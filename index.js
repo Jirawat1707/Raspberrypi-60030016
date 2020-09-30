@@ -1,6 +1,13 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Jirawat Chairong 60030016');
-}).listen(3006);
+app.get('/ping', function(req, res) {
+    res.send({ping:'hello this is server and I am alive!'});
+});
+
+app.get('/ping/:id', function(req, res) {
+    res.send({ping:'hello this is server and I am got '+req.params.id});
+});
+
+app.listen(3006);
+console.log('Listening on port 3006');
